@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 interface TypingProps {
   message: string;
   typeEnd: () => void;
-  cursor: boolean;
+  cursor?: boolean;
   className: string;
   speed: number;
 }
@@ -35,8 +35,11 @@ const Typing = ({
     })();
 
     // アンマウント時に念のためタイマー解除
-    return () => clearTimeout(timerId);
-  }, [message, speed, typeEnd]);
+    return () => {
+      setText("")
+      clearTimeout(timerId)
+    };
+  }, [message]);
 
   // レンダリングのたびに表示エリアをスクロールする
   useEffect(() => {
@@ -49,7 +52,7 @@ const Typing = ({
 
   return (
     <div
-      className={className + (cursor ? " cursor-blink" : "")}
+      className={className}
       style={{ whiteSpace: "pre-line" }}
       ref={msgEl}
     >
