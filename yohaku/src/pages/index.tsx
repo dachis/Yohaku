@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useCallback, useEffect, useRef } from "react";
+import PostForm from "../components/PostForm";
 import BasicTemplate from "../components/templates/BaasicTemplate";
 import Typing from "../components/Typing";
 import useTyping from "../hooks/typingStore";
@@ -34,6 +35,7 @@ const Home: NextPage<HomeProps> = ({posts}: HomeProps) => {
 
   return (
     <BasicTemplate>
+      <PostForm className="absolute left-10 bottom-10"/>
       <div className="h-full px-20 flex flex-col justify-center items-center">
         {params.message.length === 0 && (<span className="text-gray-400">press any key...</span>)}
         <Typing
@@ -47,7 +49,7 @@ const Home: NextPage<HomeProps> = ({posts}: HomeProps) => {
 };
 
 export async function getServerSideProps() {
-  let res = await fetch(`${process.env.DOMAIN}/api/posts`, {
+  let res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
