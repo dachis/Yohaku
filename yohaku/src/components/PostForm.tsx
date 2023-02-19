@@ -15,9 +15,9 @@ const PostForm = ({ className }: PostFormProps) => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log(data);
     const now = new Date
-    console.log(process.env)
     let res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts`, {
     method: "POST",
+    mode: 'cors',
     headers: {
       "Access-Control-Allow-Origin": "*"
     },
