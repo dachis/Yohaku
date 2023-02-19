@@ -18,6 +18,9 @@ const PostForm = ({ className }: PostFormProps) => {
     console.log(process.env)
     let res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts`, {
     method: "POST",
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
     body: JSON.stringify({
       content: data.content,
       created_at: now.toISOString()
