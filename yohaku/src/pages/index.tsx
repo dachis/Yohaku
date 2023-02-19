@@ -55,7 +55,12 @@ export async function getServerSideProps() {
       "Content-Type": "application/json",
     },
   });
-  let posts = await res.json();
+  let posts = null
+  try {
+    posts = await res.json();
+  } catch (e) {
+    console.log(e)
+  }
 
   return {
     props: { posts },
